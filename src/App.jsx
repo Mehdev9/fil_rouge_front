@@ -3,10 +3,11 @@ import { HomeView } from "./views/HomeView.jsx";
 import { RegisterView } from "./views/RegisterView.jsx";
 import { LoginView } from "./views/LoginView.jsx";
 import { PrivateView } from "./views/PrivateView.jsx";
-import { Navbar } from "./components/Navbar.jsx";
+import Navbar from "./components/Navbar.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { login } from "./store/authSlice.js";
+import React from "react";
 
 const App = () => {
     const dispatch = useDispatch();

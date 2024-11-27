@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import ApiBackend from "../api/ApiBackend.js";
-import {BrowserRouter} from "react-router-dom";
-import {Navbar} from "../components/Navbar.jsx";
+import React from "react";
+
 
 export const HomeView = () => {
 
@@ -14,7 +14,7 @@ export const HomeView = () => {
     }, []);
     return (
 
-        <h1>
+        <h1 className={"text-success"}>
             Homeview
         </h1>
     )
