@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { login } from "./store/authSlice.js";
 import React from "react";
+import Footer from "./components/Footer.jsx";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -21,22 +22,26 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            <Navbar />
-            <Routes>
-                <Route path="/" element={<HomeView />} />
+            <div>
+                <Navbar/>
+                <Routes>
+                    <Route path="/" element={<HomeView/>}/>
 
-                <Route element={<UnprotectedRoute />}>
-                    <Route path="/register" element={<RegisterView />} />
-                    <Route path="/login" element={<LoginView />} />
-                </Route>
+                    <Route element={<UnprotectedRoute/>}>
+                        <Route path="/register" element={<RegisterView/>}/>
+                        <Route path="/login" element={<LoginView/>}/>
+                    </Route>
 
 
-                <Route element={<ProtectedRoute />}>
-                    <Route path="/account" element={<PrivateView />} />
-                </Route>
-            </Routes>
+                    <Route element={<ProtectedRoute/>}>
+                        <Route path="/account" element={<PrivateView/>}/>
+                    </Route>
+                </Routes>
+
+            </div>
+            <Footer/>
         </BrowserRouter>
-    );
+);
 };
 
 export default App;

@@ -3,7 +3,7 @@ import ApiBackend from "../api/ApiBackend.js";
 import React from "react";
 
 
-export const HomeView = () => {
+export const ContactView = () => {
 
 
     useEffect(() => {
@@ -15,7 +15,7 @@ export const HomeView = () => {
     return (
 
         <h1 className="text-warning text-center display-3 mt-5 mb-4 fw-bold">
-            Homeview
+            Page de contact
         </h1>
 
     )
