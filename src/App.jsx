@@ -13,6 +13,7 @@ import Footer from "./components/Footer.jsx";
 import AboutView from "./views/AboutView.jsx";
 import ServiceView from "./views/ServiceView.jsx";
 import {ContactView} from "./views/ContactView.jsx";
+import ShopView from "./views/ShopView.jsx";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -37,6 +38,8 @@ const App = () => {
                         <Route path="/about" element={<AboutView/>}/>
                         <Route path="/services" element={<ServiceView/>}/>
                         <Route path="/contact" element={<ContactView/>}/>
+                        <Route path="/shop" element={<ShopView/>}/>
+
 
 
 
