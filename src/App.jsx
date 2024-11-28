@@ -8,7 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { login } from "./store/authSlice.js";
 import React from "react";
+import Question from "./components/Question.jsx";
 import Footer from "./components/Footer.jsx";
+import AboutView from "./views/AboutView.jsx";
+import ServiceView from "./views/ServiceView.jsx";
+import {ContactView} from "./views/ContactView.jsx";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -30,6 +34,12 @@ const App = () => {
                     <Route element={<UnprotectedRoute/>}>
                         <Route path="/register" element={<RegisterView/>}/>
                         <Route path="/login" element={<LoginView/>}/>
+                        <Route path="/about" element={<AboutView/>}/>
+                        <Route path="/services" element={<ServiceView/>}/>
+                        <Route path="/contact" element={<ContactView/>}/>
+
+
+
                     </Route>
 
 
@@ -38,6 +48,7 @@ const App = () => {
                     </Route>
                 </Routes>
 
+                <Question/>
             </div>
             <Footer/>
         </BrowserRouter>

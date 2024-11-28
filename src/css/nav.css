@@ -32,5 +32,6 @@
 }
 
 .nav-link:hover {
-    background-color: #555;
+    background-color: beige;
+    color: dodgerblue;
 }
