@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import '../css/about.css';
 
 const About = () => {
     return (
         <div className="about-page">
             <section className="hero-section text-center py-5">
                 <div className="container">
-                    <h1 className="mt-5">À propos de CompoTower</h1>
-                    <p className="lead">Votre boutique en ligne pour des composants PC de qualité à des prix
+                    <h1 className="mt-5 text-light">À propos de CompoTower</h1>
+                    <p className="lead text-light">Votre boutique en ligne pour des composants PC de qualité à des prix
                         compétitifs.</p>
                     <hr/>
                 </div>
@@ -72,24 +72,24 @@ const About = () => {
                             <div className="row justify-content-center">
                                 <div className="col-md-4 text-center">
                                     <div className="team-member">
-                                        <img src="https://via.placeholder.com/150" alt="Equipe"
-                                             className="img-fluid rounded-circle mb-3"/>
+                                        <img src="/src/img/prof.jpeg" alt="Equipe"
+                                             className="img-fluid rounded-circle mb-3" width="200" height="200"/>
                                         <h4>Mehdi Belkateb</h4>
                                         <p>Fondateur et CEO</p>
                                     </div>
                                 </div>
                                 <div className="col-md-4 text-center">
                                     <div className="team-member">
-                                        <img src="https://via.placeholder.com/150" alt="Equipe"
-                                             className="img-fluid rounded-circle mb-3"/>
-                                        <h4>Marie Lefevre</h4>
+                                        <img src="/src/img/profile.jpg" alt="Equipe"
+                                             className="img-fluid rounded-circle mb-3" width="200" height="200"/>
+                                        <h4>Maria Lefevre</h4>
                                         <p>Responsable Service Client</p>
                                     </div>
                                 </div>
                                 <div className="col-md-4 text-center">
                                     <div className="team-member">
-                                        <img src="https://via.placeholder.com/150" alt="Equipe"
-                                             className="img-fluid rounded-circle mb-3"/>
+                                        <img src="/src/img/profile.jpeg" alt="Equipe"
+                                             className="img-fluid rounded-circle mb-3" width="200" height="200"/>
                                         <h4>Paul Martin</h4>
                                         <p>Expert en Produits et Ingénieur</p>
                                     </div>

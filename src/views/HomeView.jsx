@@ -64,7 +64,7 @@ export const HomeView = () => {
                 <div className="container-fluid bg-primary text-light rounded p-4">
 
                     <div className="row">
-                        <div className="col-md-6 text-center">
+                        <div className="col-md-6 text-center d-flex flex-column justify-content-center text-center">
                             <h3 className="text-warning"> Les derniers boitiers Lian Li</h3>
                             <p className="text-center text-light">
                                 Découvrez les toutes dernières nouveautés Lian Li dans la catégorie boîtiers. Leurs
@@ -72,11 +72,12 @@ export const HomeView = () => {
                                 ultra-moderne qui allie élégance et fonctionnalité !
                             </p>
                         </div>
-                    </div>
-
                     <div className="col-md-6">
-
+                        <img src="/src/img/lianli.jpg" alt="lian li"
+                             className="img-fluid lian-img"/>
                     </div>
+                    </div>
+
 
 
                 </div>
@@ -87,10 +88,11 @@ export const HomeView = () => {
 
                     <div className="row">
                         <div className="col-md-6">
-
+                            <img src="/src/img/msi.webp" alt="lian li"
+                                 className="img-fluid lian-img"/>
                         </div>
 
-                        <div className="col-md-6 text-center">
+                        <div className="col-md-6 text-center d-flex flex-column justify-content-center text-center">
                             <h3 className="text-warning">Les dernières innovations MSI</h3>
                             <p className="text-center text-light">
                                 Découvrez les toutes dernières innovations de MSI dans le domaine des composants PC.
@@ -112,7 +114,7 @@ export const HomeView = () => {
                 <div className="container-fluid bg-primary text-light rounded p-4">
 
                     <div className="row">
-                        <div className="col-md-6 text-center">
+                        <div className="col-md-6 text-center d-flex flex-column justify-content-center text-center">
                             <h3 className="text-warning">Les nouvelles configurations Alienware</h3>
                             <p className="text-center text-light">
                                 Alienware dévoile ses dernières configurations de PC de gaming ultra-performants. Avec
@@ -124,25 +126,27 @@ export const HomeView = () => {
                             </p>
 
                         </div>
-                    </div>
-
                     <div className="col-md-6">
-
+                        <img src="/src/img/alien.jpg" alt="lian li"
+                             className="img-fluid lian-img"/>
                     </div>
+                    </div>
+
 
 
                 </div>
             </section>
 
             <section className="news-section py-5">
-                <div className="container-fluid bg-primary text-light rounded p-4">
+            <div className="container-fluid bg-primary text-light rounded p-4">
 
                     <div className="row">
                         <div className="col-md-6">
-
+                            <img src="/src/img/amdnvi.jpg" alt="lian li"
+                                 className="img-fluid lian-img"/>
                         </div>
 
-                        <div className="col-md-6 text-center">
+                        <div className="col-md-6 text-center d-flex flex-column justify-content-center text-center">
                             <h3 className="text-warning">Les dernières avancées d'AMD et NVIDIA</h3>
                             <p className="text-center text-light">
                                 AMD et NVIDIA continuent de redéfinir les standards de performance avec leurs dernières

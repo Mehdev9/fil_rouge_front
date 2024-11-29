@@ -1,0 +1,6 @@
+.hero-section {
+    background-image: url('/src/img/bg-entete.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
