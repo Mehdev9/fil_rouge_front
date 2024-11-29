@@ -23,27 +23,29 @@ const Services = () => {
                     <div className="row mt-5 justify-content-center">
                         <div className="col-md-4">
                             <div className="service-item">
-                                <div className="card bg-muted text-warning">
+                                <div className="card bg-muted text-warning mb-5">
                                     <div className="card-body">
                                         <h3 className="card-title">Cartes Mères</h3>
-                                        <p className="card-text text-muted">Des cartes mères fiables et performantes, compatibles
-                                            avec toutes les configurations modernes.</p>
+                                        <p className="card-text text-muted">Des cartes mères fiables et performantes,
+                                            compatibles avec toutes les configurations modernes.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div className="col-md-4">
                             <div className="service-item">
                                 <div className="card bg-white text-warning">
                                     <div className="card-body">
                                         <h3 className="card-title">Cartes Graphiques</h3>
-                                        <p className="card-text text-muted">Boostez vos performances graphiques avec nos cartes
-                                            graphiques haut de gamme, idéales pour le gaming et la création de
+                                        <p className="card-text text-muted">Boostez vos performances graphiques avec nos
+                                            cartes graphiques haut de gamme, idéales pour le gaming et la création de
                                             contenu.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div className="col-md-4">
                             <div className="service-item">
                                 <div className="card bg-white text-warning">
@@ -55,9 +57,47 @@ const Services = () => {
                                 </div>
                             </div>
                         </div>
+
+                        <div className="col-md-4">
+                            <div className="service-item">
+                                <div className="card bg-white text-warning">
+                                    <div className="card-body">
+                                        <h3 className="card-title">Boîtiers</h3>
+                                        <p className="card-text text-muted">Des boîtiers robustes et modernes pour
+                                            protéger vos composants tout en offrant une bonne circulation de l'air.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-md-4">
+                            <div className="service-item">
+                                <div className="card bg-white text-warning">
+                                    <div className="card-body">
+                                        <h3 className="card-title">SSD</h3>
+                                        <p className="card-text text-muted">Améliorez la vitesse de votre système avec
+                                            nos SSD haute performance, pour un démarrage ultra-rapide du système ou des programmes.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-md-4">
+                            <div className="service-item">
+                                <div className="card bg-white text-warning">
+                                    <div className="card-body">
+                                        <h3 className="card-title">Alimentations</h3>
+                                        <p className="card-text text-muted">Des alimentations fiables et efficaces,
+                                            conçues pour fournir une puissance suffisante et stable à votre système.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>
+
 
             <section className="custom-pc-section py-5 text-light">
                 <div className="container bg-primary text-warning rounded p-4 d-flex flex-column align-items-center">
