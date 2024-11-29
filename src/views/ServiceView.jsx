@@ -13,6 +13,18 @@ const Services = () => {
                 </div>
             </section>
 
+
+            <section className="custom-pc-section py-5 text-light" data-aos="fade-up">
+                <div className="container bg-primary text-warning rounded p-4 d-flex flex-column align-items-center">
+                    <h2 className="text-center pb-4">Composants de Haute Qualité</h2>
+                    <p className="text-center text-light">
+                        Tous nos composants sont soigneusement sélectionnés pour garantir une performance optimale et
+                        une compatibilité parfaite avec vos besoins informatiques.
+                    </p>
+                    <Link to="/shop" className="btn btn-warning">Voir tous les produits</Link>
+                </div>
+            </section>
+
             <section className="product-offer-section py-5">
                 <div className="container bg-primary text-light rounded p-4">
                     <h2 className="text-center text-warning pb-4">Nos Composants PC</h2>
@@ -23,7 +35,7 @@ const Services = () => {
                     <div className="row mt-5 justify-content-center">
                         <div className="col-md-4">
                             <div className="service-item">
-                                <div className="card bg-muted text-warning mb-5">
+                                <div className="card bg-muted text-warning mb-5" data-aos="flip-left">
                                     <div className="card-body">
                                         <h3 className="card-title">Cartes Mères</h3>
                                         <p className="card-text text-muted">Des cartes mères fiables et performantes,
@@ -35,7 +47,7 @@ const Services = () => {
 
                         <div className="col-md-4">
                             <div className="service-item">
-                                <div className="card bg-white text-warning">
+                                <div className="card bg-white text-warning" data-aos="flip-down">
                                     <div className="card-body">
                                         <h3 className="card-title">Cartes Graphiques</h3>
                                         <p className="card-text text-muted">Boostez vos performances graphiques avec nos
@@ -48,7 +60,7 @@ const Services = () => {
 
                         <div className="col-md-4">
                             <div className="service-item">
-                                <div className="card bg-white text-warning">
+                                <div className="card bg-white text-warning" data-aos="flip-right">
                                     <div className="card-body">
                                         <h3 className="card-title">Processeurs</h3>
                                         <p className="card-text text-muted">Choisissez parmi une sélection des meilleurs
@@ -60,7 +72,7 @@ const Services = () => {
 
                         <div className="col-md-4">
                             <div className="service-item">
-                                <div className="card bg-white text-warning">
+                                <div className="card bg-white text-warning" data-aos="flip-left">
                                     <div className="card-body">
                                         <h3 className="card-title">Boîtiers</h3>
                                         <p className="card-text text-muted">Des boîtiers robustes et modernes pour
@@ -72,11 +84,12 @@ const Services = () => {
 
                         <div className="col-md-4">
                             <div className="service-item">
-                                <div className="card bg-white text-warning">
+                                <div className="card bg-white text-warning" data-aos="flip-down" >
                                     <div className="card-body">
                                         <h3 className="card-title">SSD</h3>
                                         <p className="card-text text-muted">Améliorez la vitesse de votre système avec
-                                            nos SSD haute performance, pour un démarrage ultra-rapide du système ou des programmes.</p>
+                                            nos SSD haute performance, pour un démarrage ultra-rapide du système ou des
+                                            programmes.</p>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +97,7 @@ const Services = () => {
 
                         <div className="col-md-4">
                             <div className="service-item">
-                                <div className="card bg-white text-warning">
+                                <div className="card bg-white text-warning" data-aos="flip-right">
                                     <div className="card-body">
                                         <h3 className="card-title">Alimentations</h3>
                                         <p className="card-text text-muted">Des alimentations fiables et efficaces,
@@ -98,17 +111,6 @@ const Services = () => {
                 </div>
             </section>
 
-
-            <section className="custom-pc-section py-5 text-light">
-                <div className="container bg-primary text-warning rounded p-4 d-flex flex-column align-items-center">
-                    <h2 className="text-center pb-4">Composants de Haute Qualité</h2>
-                    <p className="text-center text-light">
-                        Tous nos composants sont soigneusement sélectionnés pour garantir une performance optimale et
-                        une compatibilité parfaite avec vos besoins informatiques.
-                    </p>
-                    <Link to="/shop" className="btn btn-warning">Voir tous les produits</Link>
-                </div>
-            </section>
 
         </div>
     );

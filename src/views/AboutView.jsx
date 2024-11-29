@@ -14,7 +14,7 @@ const About = () => {
 
             </section>
 
-            <section className="mission-section py-5">
+            <section className="mission-section py-5" data-aos="fade-up">
                 <div className="container bg-primary text-light rounded p-4">
                     <h2 className="text-center text-warning pb-4">Notre Mission</h2>
                     <p>
@@ -35,7 +35,7 @@ const About = () => {
                     <h2 className="text-center">Nos Valeurs</h2>
                     <div className="row mt-5">
                         <div className="col-md-4">
-                            <div className="card bg-muted">
+                            <div className="card bg-muted" data-aos="flip-down">
                                 <div className="card-body text-warning">
                                     <h3 className="card-title">Qualité</h3>
                                     <p className="card-text text-muted">Nous sélectionnons rigoureusement chaque produit pour vous
@@ -44,7 +44,7 @@ const About = () => {
                             </div>
                         </div>
                         <div className="col-md-4">
-                            <div className="card bg-white">
+                            <div className="card bg-white" data-aos="flip-down">
                                 <div className="card-body text-warning">
                                     <h3 className="card-title">Innovation</h3>
                                     <p className="card-text text-muted">Nous restons à l'affût des dernières tendances et des
@@ -53,7 +53,7 @@ const About = () => {
                             </div>
                         </div>
                         <div className="col-md-4">
-                            <div className="card bg-white">
+                            <div className="card bg-white" data-aos="flip-down">
                                 <div className="card-body text-warning">
                                     <h3 className="card-title">Service Client</h3>
                                     <p className="card-text text-muted">Notre équipe est là pour vous aider à chaque étape de votre
@@ -65,7 +65,7 @@ const About = () => {
                 </div>
             </section>
 
-            <section className="team-section bg-primary text-light">
+            <section className="team-section bg-primary text-light" data-aos="fade-up">
                     <div className="team-section py-5">
                         <div className="container text-warning">
                             <h2 className="text-center pb-5">Rencontrez notre équipe</h2>
@@ -73,7 +73,7 @@ const About = () => {
                                 <div className="col-md-4 text-center">
                                     <div className="team-member">
                                         <img src="/src/img/prof.jpeg" alt="Equipe"
-                                             className="img-fluid rounded-circle mb-3" width="200" height="200"/>
+                                             className="img-fluid rounded-circle mb-3" width="100" height="100"/>
                                         <h4>Mehdi Belkateb</h4>
                                         <p>Fondateur et CEO</p>
                                     </div>
@@ -81,7 +81,7 @@ const About = () => {
                                 <div className="col-md-4 text-center">
                                     <div className="team-member">
                                         <img src="/src/img/profile.jpg" alt="Equipe"
-                                             className="img-fluid rounded-circle mb-3" width="200" height="200"/>
+                                             className="img-fluid rounded-circle mb-3" width="100" height="100"/>
                                         <h4>Maria Lefevre</h4>
                                         <p>Responsable Service Client</p>
                                     </div>
@@ -89,7 +89,7 @@ const About = () => {
                                 <div className="col-md-4 text-center">
                                     <div className="team-member">
                                         <img src="/src/img/profile.jpeg" alt="Equipe"
-                                             className="img-fluid rounded-circle mb-3" width="200" height="200"/>
+                                             className="img-fluid rounded-circle mb-3" width="100" height="100"/>
                                         <h4>Paul Martin</h4>
                                         <p>Expert en Produits et Ingénieur</p>
                                     </div>

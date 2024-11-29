@@ -27,7 +27,7 @@ export const HomeView = () => {
                 </div>
             </section>
 
-            <section className="debut-section py-5">
+            <section className="debut-section py-5" data-aos="fade-up">
                 <div className="container bg-primary text-light rounded p-4 d-flex flex-column align-items-center">
                     <h2 className="text-center text-warning pb-4">Commencez vos achats</h2>
                     <p className="text-center">
@@ -39,7 +39,7 @@ export const HomeView = () => {
                 </div>
             </section>
 
-            <section className="connexion-section py-5">
+            <section className="connexion-section py-5" data-aos="fade-up">
                 <div className="container bg-primary text-light rounded p-4 d-flex flex-column align-items-center">
                     <h2 className="text-center text-warning pb-4">Connectez-vous</h2>
                     <p className="text-center">
@@ -74,7 +74,7 @@ export const HomeView = () => {
                         </div>
                     <div className="col-md-6">
                         <img src="/src/img/lianli.jpg" alt="lian li"
-                             className="img-fluid lian-img"/>
+                             className="img-fluid lian-img" data-aos="fade-left"/>
                     </div>
                     </div>
 
@@ -89,7 +89,7 @@ export const HomeView = () => {
                     <div className="row">
                         <div className="col-md-6">
                             <img src="/src/img/msi.webp" alt="lian li"
-                                 className="img-fluid lian-img"/>
+                                 className="img-fluid lian-img" data-aos="fade-right"/>
                         </div>
 
                         <div className="col-md-6 text-center d-flex flex-column justify-content-center text-center">
@@ -128,7 +128,7 @@ export const HomeView = () => {
                         </div>
                     <div className="col-md-6">
                         <img src="/src/img/alien.jpg" alt="lian li"
-                             className="img-fluid lian-img"/>
+                             className="img-fluid lian-img" data-aos="fade-left"/>
                     </div>
                     </div>
 
@@ -143,7 +143,7 @@ export const HomeView = () => {
                     <div className="row">
                         <div className="col-md-6">
                             <img src="/src/img/amdnvi.jpg" alt="lian li"
-                                 className="img-fluid lian-img"/>
+                                 className="img-fluid lian-img" data-aos="fade-right"/>
                         </div>
 
                         <div className="col-md-6 text-center d-flex flex-column justify-content-center text-center">

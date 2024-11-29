@@ -14,11 +14,18 @@ import AboutView from "./views/AboutView.jsx";
 import ServiceView from "./views/ServiceView.jsx";
 import {ContactView} from "./views/ContactView.jsx";
 import ShopView from "./views/ShopView.jsx";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const App = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        AOS.init({
+            duration: 1000,  // durée de l'animation (en millisecondes)
+            easing: 'ease',  // type d'accélération
+            once: true,      // l'animation se déclenche uniquement une fois
+        });
         const token = localStorage.getItem("token");
         if (token) {
             dispatch(login(token));
