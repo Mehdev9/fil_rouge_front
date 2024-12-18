@@ -4,12 +4,12 @@ import '../css/about.css';
 const About = () => {
     return (
         <div className="about-page">
-            <section className="hero-section text-center py-5">
+            <section className="hero-section text-center py-5" style={{ minHeight: '600px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <div className="container">
                     <h1 className="mt-5 text-light">À propos de CompoTower</h1>
+                    <hr/>
                     <p className="lead text-light">Votre boutique en ligne pour des composants PC de qualité à des prix
                         compétitifs.</p>
-                    <hr/>
                 </div>
 
             </section>

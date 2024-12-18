@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 const Services = () => {
     return (
         <div className="services-page">
-            <section className="hero-section text-center py-5">
+            <section className="hero-section text-center py-5" style={{ minHeight: '600px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <div className="container">
                     <h1 className="mt-5">Nos Services</h1>
+                    <hr/>
                     <p className="lead">Découvrez nos solutions et produits pour améliorer votre expérience
                         informatique.</p>
-                    <hr/>
                 </div>
             </section>
 

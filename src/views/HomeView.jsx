@@ -14,16 +14,16 @@ export const HomeView = () => {
 
     return (
         <div className="home-page">
-            <section className="hero-section text-center py-5">
+            <section className="hero-section text-center py-5" style={{ minHeight: '600px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <div className="container">
                     <h1 className="mt-5">Bienvenue sur CompoTower !</h1>
+                    <hr/>
                     <p className="lead">
                         Découvrez les meilleurs composants PC, conçus pour offrir performance, fiabilité et innovation à
                         un prix compétitif.
                         Que vous soyez un passionné de jeux vidéo, un créateur de contenu ou un professionnel, nous
                         avons ce qu'il vous faut.
                     </p>
-                    <hr/>
                 </div>
             </section>
 
@@ -61,7 +61,7 @@ export const HomeView = () => {
 
 
             <section className="news-section py-5">
-                <div className="container-fluid bg-primary text-light rounded p-4">
+                <div className="container-fluid bg-primary text-light rounded">
 
                     <div className="row">
                         <div className="col-md-6 text-center d-flex flex-column justify-content-center text-center">
@@ -74,7 +74,7 @@ export const HomeView = () => {
                         </div>
                     <div className="col-md-6">
                         <img src="/src/img/lianli.jpg" alt="lian li"
-                             className="img-fluid lian-img" data-aos="fade-left"/>
+                             className="img-fluid lian-img" style={{ minHeight: '100%', minWidth: '100%' }} data-aos="fade-left"/>
                     </div>
                     </div>
 
@@ -84,12 +84,12 @@ export const HomeView = () => {
             </section>
 
             <section className="news-section py-5">
-                <div className="container-fluid bg-primary text-light rounded p-4">
+                <div className="container-fluid bg-primary text-light rounded">
 
                     <div className="row">
                         <div className="col-md-6">
                             <img src="/src/img/msi.webp" alt="lian li"
-                                 className="img-fluid lian-img" data-aos="fade-right"/>
+                                 className="img-fluid lian-img" style={{ minHeight: '100%' }} data-aos="fade-right"/>
                         </div>
 
                         <div className="col-md-6 text-center d-flex flex-column justify-content-center text-center">
@@ -111,7 +111,7 @@ export const HomeView = () => {
             </section>
 
             <section className="news-section py-5">
-                <div className="container-fluid bg-primary text-light rounded p-4">
+                <div className="container-fluid bg-primary text-light rounded">
 
                     <div className="row">
                         <div className="col-md-6 text-center d-flex flex-column justify-content-center text-center">
@@ -128,7 +128,7 @@ export const HomeView = () => {
                         </div>
                     <div className="col-md-6">
                         <img src="/src/img/alien.jpg" alt="lian li"
-                             className="img-fluid lian-img" data-aos="fade-left"/>
+                             className="img-fluid lian-img" style={{ minHeight: '100%' }} data-aos="fade-left"/>
                     </div>
                     </div>
 
@@ -138,12 +138,12 @@ export const HomeView = () => {
             </section>
 
             <section className="news-section py-5">
-            <div className="container-fluid bg-primary text-light rounded p-4">
+            <div className="container-fluid bg-primary text-light rounded">
 
                     <div className="row">
                         <div className="col-md-6">
                             <img src="/src/img/amdnvi.jpg" alt="lian li"
-                                 className="img-fluid lian-img" data-aos="fade-right"/>
+                                 className="img-fluid lian-img" style={{ minHeight: '100%' }} data-aos="fade-right"/>
                         </div>
 
                         <div className="col-md-6 text-center d-flex flex-column justify-content-center text-center">
