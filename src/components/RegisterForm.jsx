@@ -1,7 +1,9 @@
+import React from 'react';
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as yup from "yup";
 import apiBackend from "../api/ApiBackend.js";
 import {useNavigate} from "react-router-dom";
+import error from "eslint-plugin-react/lib/util/error.js";
 
 export const RegisterForm = () => {
     const navigate = useNavigate();
@@ -23,33 +25,94 @@ export const RegisterForm = () => {
             })
     }
     return (
-        <Formik
-            initialValues={{
-                username: "",
-                email: "",
-                password: "",
-                repeatPassword: ""
+        <section className="debut-section py-5" data-aos="fade-up">
+            <div className="container bg-primary text-light rounded p-4 d-flex flex-column align-items-center">
+                <h2 className="text-center text-warning pb-4">Formulaire d'inscription</h2>
+                <Formik
+                    initialValues={{
+                        username: "",
+                        email: "",
+                        password: "",
+                        repeatPassword: ""
+                    }}
+                    onSubmit={submit}
+                    validationSchema={validationSchema}
+                >
+                    <Form>
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label htmlFor="username">Nom d'utilisateur:</label>
+                                    <Field
+                                        type="text"
+                                        id="username"
+                                        name="username"
+                                        placeholder="Nom d'utilisateur"
+                                        className="form-control"
+                                    />
+                                    <ErrorMessage name="username" component="div" className="text-danger mt-2"/>
+                                </div>
+                            </div>
 
-            }}
-            onSubmit={submit}
-            validationSchema={validationSchema}
-        >
-            <Form>
-                <Field name={"username"} placeholder={"Nom d'utilisateur"}/>
-                <ErrorMessage name={"username"} component={"email"}/>
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label htmlFor="email">Email:</label>
+                                    <Field
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        placeholder="Email"
+                                        className="form-control"
+                                    />
+                                    <ErrorMessage name="email" component="div" className="text-danger mt-2"/>
+                                </div>
+                            </div>
+                        </div>
 
-                <Field name={"email"} placeholder={"email"}/>
-                <ErrorMessage name={"email"} component={"small"}/>
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label htmlFor="password">Mot de passe:</label>
+                                    <Field
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        placeholder="Mot de passe"
+                                        className="form-control"
+                                    />
+                                    <ErrorMessage name="password" component="div" className="text-danger mt-2"/>
+                                </div>
+                            </div>
 
-                <Field name={"password"} placeholder={"Mot de passe"}/>
-                <ErrorMessage name={"password"} component={"small"}/>
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label htmlFor="repeatPassword">Confirmation de Mot de passe:</label>
+                                    <Field
+                                        type="password"
+                                        id="repeatPassword"
+                                        name="repeatPassword"
+                                        placeholder="Confirmation de Mot de passe"
+                                        className="form-control"
+                                    />
+                                    <ErrorMessage name="repeatPassword" component="div" className="text-danger mt-2"/>
+                                </div>
+                            </div>
+                        </div>
 
-                <Field name={"repeatPassword"} placeholder={"Confirmation de Mot de passe"}/>
-                <ErrorMessage name={"repeatPassword"} component={"small"}/>
+                        <div>
+                            <button type="submit" className="btn btn-warning mt-3">Valider</button>
+                        </div>
 
-                <button type={"submit"}>Valider</button>
+                        {error && (
+                            <div className="alert alert-danger d-flex align-items-center mt-3" role="alert">
+                                <i className="bi bi-exclamation-triangle-fill me-2"></i>
+                                <span>Le mot de passe ne correspond pas à la confirmation.</span>
+                            </div>
+                        )}
+                    </Form>
+                </Formik>
+            </div>
+        </section>
 
-            </Form>
-        </Formik>
     )
 }

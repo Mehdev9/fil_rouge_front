@@ -16,6 +16,8 @@ import {ContactView} from "./views/ContactView.jsx";
 import ShopView from "./views/ShopView.jsx";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 
 const App = () => {
     const dispatch = useDispatch();
