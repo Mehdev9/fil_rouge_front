@@ -2,7 +2,7 @@ import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom
 import { HomeView } from "./views/HomeView.jsx";
 import { RegisterView } from "./views/RegisterView.jsx";
 import { LoginView } from "./views/LoginView.jsx";
-import { PrivateView } from "./views/PrivateView.jsx";
+import { AccountView } from "./views/AccountView.jsx";
 import Navbar from "./components/Navbar.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -17,10 +17,13 @@ import ShopView from "./views/ShopView.jsx";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { DashboardView } from "./views/DashboardView.jsx";
 
 
 const App = () => {
+    const [loading, setLoading] = React.useState(true);
     const dispatch = useDispatch();
+
 
     useEffect(() => {
         AOS.init({
@@ -32,8 +35,13 @@ const App = () => {
         if (token) {
             dispatch(login(token));
         }
+        setLoading(false)
     }, [dispatch]);
-
+if (loading) {
+    return (
+        <div>chargement</div>
+    )
+}
     return (
         <BrowserRouter>
             <div>
@@ -56,7 +64,9 @@ const App = () => {
 
 
                     <Route element={<ProtectedRoute/>}>
-                        <Route path="/account" element={<PrivateView/>}/>
+                        <Route path="/account" element={<AccountView/>}/>
+                        <Route path="/dashboard" element={<DashboardView/>}/>
+
                     </Route>
                 </Routes>
 
@@ -71,7 +81,6 @@ export default App;
 
 const ProtectedRoute = () => {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
     if (!isAuthenticated) {
         return <Navigate to="/login" replace />;
     }

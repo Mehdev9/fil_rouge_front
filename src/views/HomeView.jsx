@@ -1,16 +1,7 @@
-import { useEffect } from "react";
-import ApiBackend from "../api/ApiBackend.js";
 import React from "react";
 import {Link} from "react-router-dom";
 
 export const HomeView = () => {
-
-    useEffect(() => {
-        ApiBackend.get("/hello")
-            .then((response) => {
-                console.log(response);
-            });
-    }, []);
 
     return (
         <div className="home-page">
