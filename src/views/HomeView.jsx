@@ -21,6 +21,7 @@ export const HomeView = () => {
             <section className="debut-section py-5" data-aos="fade-up">
                 <div className="container bg-primary text-light rounded p-4 d-flex flex-column align-items-center">
                     <h2 className="text-center text-warning pb-4">Commencez vos achats</h2>
+                    <img id={"homelogo"} src="/src/img/logocompo.jpg" alt="logo de CompoTower" className="rounded-circle w-25 h-auto mb-4 border border-2 border-warning shadow-lg"/>
                     <p className="text-center">
                         Vous pouvez dès à présent commencer à explorer notre catalogue et trouver les produits qui vous
                         correspondent.
