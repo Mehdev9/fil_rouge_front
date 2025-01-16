@@ -1,10 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ApiBackend from "../api/ApiBackend.js";
 import React from "react";
 import { Link } from "react-router-dom";
 
 export const DashboardView = () => {
-
 
     useEffect(() => {
         ApiBackend.get("/dashboard")
@@ -13,124 +12,101 @@ export const DashboardView = () => {
             });
     }, []);
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            setIsLoggedIn(true);
+        }
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        setIsLoggedIn(false);
+    };
+
     return (
-        <div className="dashboard-page">
-            <div className="container-fluid">
-                <div className="row">
-                    {/* Menu latéral à gauche */}
-                    <div className="col-md-3 col-lg-2 bg-dark text-white p-4 position-fixed h-100">
-                        <h3 className="text-warning">Menu</h3>
-                        <ul className="nav flex-column">
-                            <li className="nav-item">
-                                <Link to="/stats" className="nav-link text-white">Statistiques</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/shop" className="nav-link text-white">Produits récents</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/profile" className="nav-link text-white">Gestion de compte</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/notifications" className="nav-link text-white">Notifications</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/offers" className="nav-link text-white">Offres spéciales</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/news" className="nav-link text-white">Dernières actualités</Link>
-                            </li>
-                        </ul>
+        <div className="dashboard-page d-flex">
+
+            <div className="sidebar bg-primary text-light p-4 mt-5" style={{width: '250px'}}>
+                <hr className="my-4 border-3 border-warning"/>
+                <h3 className="text-warning text-center mb-4">CompoTower</h3>
+                <hr className="my-4 border-3 border-warning"/>
+                <ul className="nav flex-column">
+                    <li className="nav-item mb-3">
+                        <Link to="/dashboard" className="nav-link text-light">
+                            <i className="bi bi-house-door"></i> Dashboard
+                        </Link>
+                    </li>
+                    <li className="nav-item mb-3">
+                        <Link to="/shop" className="nav-link text-light">
+                            <i className="bi bi-shop"></i> Produits
+                        </Link>
+                    </li>
+                    <li className="nav-item mb-3">
+                        <Link to="/orders" className="nav-link text-light">
+                            <i className="bi bi-box"></i> Commandes
+                        </Link>
+                    </li>
+                    <li className="nav-item mb-3">
+                        <Link to="/account" className="nav-link text-light">
+                            <i className="bi bi-person-circle"></i> Profil
+                        </Link>
+                    </li>
+                    <li className="nav-item mb-3">
+                        <Link to="/offers" className="nav-link text-light">
+                            <i className="bi bi-tag"></i> Offres
+                        </Link>
+                    </li>
+                    <li className="nav-item mb-3">
+                        <button
+                            className="nav-link text-light bg-transparent border-0 d-flex align-items-center"
+                            onClick={handleLogout}
+                        >
+                            <i className="bi bi-box-arrow-right me-2"></i> Déconnexion
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <div className="main-content flex-grow-1 p-4">
+                <section className="hero-section text-center py-5" style={{ minHeight: '600px' }}>
+                    <div className="container">
+                        <h1 className="mt-5">Bienvenue dans votre tableau de bord</h1>
+                        <hr />
+                        <p className="lead">
+                            Gérer vos produits, commandes et profil avec facilité. Accédez aux dernières informations
+                            et gérez vos préférences en un clin d'œil.
+                        </p>
                     </div>
+                </section>
 
-                    {/* Contenu principal à droite */}
-                    <div className="col-md-9 col-lg-10 ml-md-3 pl-md-5">
-                        <div className="container py-5">
-                            <div className="row">
-                                {/* Section 1: Statistiques */}
-                                <div className="col-md-4 mb-4">
-                                    <div className="card text-white bg-primary">
-                                        <div className="card-header text-center">
-                                            <h4 className="text-warning">Statistiques</h4>
-                                        </div>
-                                        <div className="card-body">
-                                            <p className="text-center">Suivez les ventes, les stocks, consultez les tendances et bien plus encore.</p>
-                                            <Link to="/stats" className="btn btn-warning d-block mx-auto">Voir les statistiques</Link>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                {/* Section 2: Produits récents */}
-                                <div className="col-md-4 mb-4">
-                                    <div className="card text-white bg-primary">
-                                        <div className="card-header text-center">
-                                            <h4 className="text-warning">Produits récents</h4>
-                                        </div>
-                                        <div className="card-body">
-                                            <p className="text-center">Consultez les nouveaux produits disponibles dans notre catalogue.</p>
-                                            <Link to="/shop" className="btn btn-warning d-block mx-auto">Voir les nouveaux produits</Link>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                {/* Section 3: Gestion de compte */}
-                                <div className="col-md-4 mb-4">
-                                    <div className="card text-white bg-primary">
-                                        <div className="card-header text-center">
-                                            <h4 className="text-warning">Gestion de compte</h4>
-                                        </div>
-                                        <div className="card-body">
-                                            <p className="text-center">Mettez à jour vos informations personnelles et gérez vos préférences.</p>
-                                            <Link to="/profile" className="btn btn-warning d-block mx-auto">Gérer mon compte</Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                {/* Section 4: Notifications */}
-                                <div className="col-md-6 mb-4">
-                                    <div className="card text-white bg-secondary">
-                                        <div className="card-header text-center">
-                                            <h4 className="text-warning">Notifications</h4>
-                                        </div>
-                                        <div className="card-body">
-                                            <p className="text-center">Consultez les dernières notifications concernant vos commandes et promotions.</p>
-                                            <Link to="/notifications" className="btn btn-warning d-block mx-auto">Voir les notifications</Link>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Section 5: Offres spéciales */}
-                                <div className="col-md-6 mb-4">
-                                    <div className="card text-white bg-secondary">
-                                        <div className="card-header text-center">
-                                            <h4 className="text-warning">Offres spéciales</h4>
-                                        </div>
-                                        <div className="card-body">
-                                            <p className="text-center">Profitez de nos offres exclusives sur les produits populaires.</p>
-                                            <Link to="/offers" className="btn btn-warning d-block mx-auto">Voir les offres</Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                {/* Section 6: Dernières actualités */}
-                                <div className="col-md-12">
-                                    <div className="card text-white bg-primary">
-                                        <div className="card-header text-center">
-                                            <h4 className="text-warning">Dernières actualités</h4>
-                                        </div>
-                                        <div className="card-body">
-                                            <p className="text-center">Restez informé sur les dernières innovations dans le monde des composants PC.</p>
-                                            <Link to="/news" className="btn btn-warning d-block mx-auto">Voir les actualités</Link>
-                                        </div>
-                                    </div>
-                                </div>
+                <section className="py-5 shadow-lg" data-aos="fade-up">
+                    <div className="container bg-primary text-light rounded p-4">
+                        <div className="row justify-content-center">
+                            <div className="col-md-6 text-center">
+                                <h2 className="text-warning pb-4">Statistiques récentes</h2>
+                                <p>
+                                    Visualisez vos commandes récentes et suivez les performances de vos produits en un coup d'œil.
+                                </p>
+                                <Link to="/orders" className="btn btn-warning">Voir toutes les commandes</Link>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
+
+                <section className="recent-activity py-5 shadow-lg" data-aos="fade-up">
+                    <div className="container bg-primary text-light rounded p-4">
+                        <h2 className="text-warning pb-4">Activité récente</h2>
+                        <p>
+                            Vous avez récemment consulté des produits et effectué des achats. Suivez ici votre activité.
+                        </p>
+                        <Link to="/profile" className="btn btn-warning">Voir mon profil</Link>
+                    </div>
+                </section>
             </div>
         </div>
     );
