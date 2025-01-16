@@ -16,6 +16,20 @@ export const AccountView = () => {
             })
     }, []);
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            setIsLoggedIn(true);
+        }
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        setIsLoggedIn(false);
+    };
+
     return (
         <div className="account-page">
             <section className="hero-section text-center py-5"
@@ -85,7 +99,7 @@ export const AccountView = () => {
                                 </div>
                                 <div className="row mt-3">
                                     <div className="col-12">
-                                        <button className="btn btn-danger w-100">Se déconnecter</button>
+                                        <button className="btn btn-danger w-100" onClick={handleLogout}>Se déconnecter</button>
                                     </div>
                                 </div>
                             </div>
