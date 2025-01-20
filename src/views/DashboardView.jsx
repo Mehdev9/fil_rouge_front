@@ -40,7 +40,7 @@ export const DashboardView = () => {
                         </Link>
                     </li>
                     <li className="nav-item mb-3">
-                        <Link to="/shop" className="nav-link text-light">
+                        <Link to="/dashboard/products" className="nav-link text-light">
                             <i className="bi bi-shop"></i> Produits
                         </Link>
                     </li>
@@ -71,26 +71,31 @@ export const DashboardView = () => {
             </div>
 
             <div className="main-content flex-grow-1 p-4">
-                <section className="hero-section text-center py-5" style={{ minHeight: '600px' }}>
+                <section className="hero-section text-center py-5"
+                         style={{
+                             minHeight: '600px',
+                             display: 'flex',
+                             flexDirection: 'column',
+                             justifyContent: 'center'
+                }}>
                     <div className="container">
                         <h1 className="mt-5">Bienvenue dans votre tableau de bord</h1>
-                        <hr />
+                        <hr/>
                         <p className="lead">
                             Gérer vos produits, commandes et profil avec facilité. Accédez aux dernières informations
                             et gérez vos préférences en un clin d'œil.
                         </p>
                     </div>
                 </section>
-
-
-
+                
                 <section className="py-5 shadow-lg" data-aos="fade-up">
                     <div className="container bg-primary text-light rounded p-4">
                         <div className="row justify-content-center">
                             <div className="col-md-6 text-center">
                                 <h2 className="text-warning pb-4">Statistiques récentes</h2>
                                 <p>
-                                    Visualisez vos commandes récentes et suivez les performances de vos produits en un coup d'œil.
+                                    Visualisez vos commandes récentes et suivez les performances de vos produits en un
+                                    coup d'œil.
                                 </p>
                                 <Link to="/orders" className="btn btn-warning">Voir toutes les commandes</Link>
                             </div>

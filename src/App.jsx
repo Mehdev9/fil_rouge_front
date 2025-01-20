@@ -1,12 +1,12 @@
-import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
-import { HomeView } from "./views/HomeView.jsx";
-import { RegisterView } from "./views/RegisterView.jsx";
-import { LoginView } from "./views/LoginView.jsx";
-import { AccountView } from "./views/AccountView.jsx";
+import {BrowserRouter, Navigate, Outlet, Route, Routes} from "react-router-dom";
+import {HomeView} from "./views/HomeView.jsx";
+import {RegisterView} from "./views/RegisterView.jsx";
+import {LoginView} from "./views/LoginView.jsx";
+import {AccountView} from "./views/AccountView.jsx";
 import Navbar from "./components/Navbar.jsx";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { login } from "./store/authSlice.js";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {login} from "./store/authSlice.js";
 import React from "react";
 import Question from "./components/Question.jsx";
 import Footer from "./components/Footer.jsx";
@@ -17,7 +17,8 @@ import ShopView from "./views/ShopView.jsx";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { DashboardView } from "./views/DashboardView.jsx";
+import {DashboardView} from "./views/DashboardView.jsx";
+import AdminProductView from "./views/AdminProductView.jsx";
 
 
 const App = () => {
@@ -37,33 +38,31 @@ const App = () => {
         }
         setLoading(false)
     }, [dispatch]);
-if (loading) {
-    return (
-        <div>chargement</div>
-    )
-}
+    if (loading) {
+        return (
+            <div>chargement</div>
+        )
+    }
     return (
         <BrowserRouter>
             <div>
                 <Navbar/>
                 <Routes>
                     <Route path="/" element={<HomeView/>}/>
+                    <Route path="/about" element={<AboutView/>}/>
+                    <Route path="/services" element={<ServiceView/>}/>
+                    <Route path="/contact" element={<ContactView/>}/>
 
                     <Route element={<UnprotectedRoute/>}>
                         <Route path="/register" element={<RegisterView/>}/>
                         <Route path="/login" element={<LoginView/>}/>
-                        <Route path="/about" element={<AboutView/>}/>
-                        <Route path="/services" element={<ServiceView/>}/>
-                        <Route path="/contact" element={<ContactView/>}/>
-                        <Route path="/shop" element={<ShopView/>}/>
-
-
 
 
                     </Route>
 
 
                     <Route element={<ProtectedRoute/>}>
+                        <Route path="/dashboard/products" element={<AdminProductView/>}/>
                         <Route path="/account" element={<AccountView/>}/>
                         <Route path="/dashboard" element={<DashboardView/>}/>
 
@@ -74,7 +73,7 @@ if (loading) {
             </div>
             <Footer/>
         </BrowserRouter>
-);
+    );
 };
 
 export default App;
@@ -82,16 +81,16 @@ export default App;
 const ProtectedRoute = () => {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     if (!isAuthenticated) {
-        return <Navigate to="/login" replace />;
+        return <Navigate to="/login" replace/>;
     }
-    return <Outlet />;
+    return <Outlet/>;
 };
 
 const UnprotectedRoute = () => {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
     if (isAuthenticated) {
-        return <Navigate to="/" replace />;
+        return <Navigate to="/" replace/>;
     }
-    return <Outlet />;
+    return <Outlet/>;
 };
