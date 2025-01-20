@@ -1,48 +1,57 @@
-import React, { useState } from "react";
+import React from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import ApiBackend from "../api/ApiBackend.js";
 import { Link } from "react-router-dom";
 
-
 const AdminProductView = () => {
-    const [product, setProduct] = useState({
-        name: '',
-        description: '',
-        category: '',
-        brand: '',
-        price: '',
-        quantity: ''
-    });
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            description: '',
+            category: '',
+            brand: '',
+            price: '',
+            quantity: '',
+            image: null
+        },
+        validationSchema: Yup.object({
+            name: Yup.string().min(4, "Le nom doit comporter au moins 4 caractères").max(30, "Le nom ne peut pas dépasser 30 caractères").required("Le nom est requis"),
+            description: Yup.string().min(1, "La description doit comporter au moins 20 caractères").max(255, "La description ne peut pas dépasser 255 caractères").required("La description est requise"),
+            category: Yup.string().required("La catégorie est requise"),
+            brand: Yup.string().required("La marque est requise"),
+            price: Yup.number().positive("Le prix doit être un nombre positif").required("Le prix est requis"),
+            quantity: Yup.number().integer("La quantité doit être un entier").positive("La quantité doit être un nombre positif").required("La quantité est requise")
+        }),
+        onSubmit: (values) => {
+            const formData = new FormData();
+            formData.append("name", values.name);
+            formData.append("description", values.description);
+            formData.append("category", values.category);
+            formData.append("brand", values.brand);
+            formData.append("price", values.price);
+            formData.append("quantity", values.quantity);
 
-    const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(null);
+            // Ajouter l'image si elle existe
+            if (values.image) {
+                formData.append("image", values.image);
+            }
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setProduct(prevProduct => ({
-            ...prevProduct,
-            [name]: value
-        }));
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        ApiBackend.post("/dashboard/products", product)
-            .then(response => {
-                setSuccess('Produit ajouté avec succès.');
-                setProduct({
-                    name: '',
-                    description: '',
-                    category: '',
-                    brand: '',
-                    price: '',
-                    quantity: ''
-                });
+            // Envoi de la requête avec FormData
+            ApiBackend.post("/dashboard/products", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data", // Indiquer qu'on envoie des fichiers
+                },
             })
-            .catch(error => {
-                setError('Une erreur est survenue lors de l\'ajout du produit.');
-            });
-    };
+                .then(response => {
+                    alert("Produit ajouté avec succès.");
+                    formik.resetForm();
+                })
+                .catch(error => {
+                    alert("Une erreur est survenue lors de l'ajout du produit.");
+                });
+        }
+    });
 
     return (
         <div className="dashboard-page d-flex">
@@ -98,10 +107,24 @@ const AdminProductView = () => {
                         <h2 className="text-warning pb-2">Formulaire d'ajout</h2>
                         <hr />
 
-                        {error && <div className="alert alert-danger">{error}</div>}
-                        {success && <div className="alert alert-success">{success}</div>}
+                        <form onSubmit={formik.handleSubmit}>
 
-                        <form onSubmit={handleSubmit}>
+                            <div className="mb-3">
+                                <label htmlFor="image" className="form-label">Image du produit</label>
+                                <input
+                                    type="file"
+                                    className="form-control"
+                                    id="image"
+                                    name="image"
+                                    onChange={(event) => {
+                                        formik.setFieldValue("image", event.target.files[0]);
+                                    }}
+                                />
+                                {formik.touched.image && formik.errors.image && (
+                                    <div className="text-danger">{formik.errors.image}</div>
+                                )}
+                            </div>
+
                             <div className="mb-3">
                                 <label htmlFor="name" className="form-label">Nom du produit</label>
                                 <input
@@ -109,9 +132,13 @@ const AdminProductView = () => {
                                     className="form-control"
                                     id="name"
                                     name="name"
-                                    value={product.name}
-                                    onChange={handleChange}
+                                    value={formik.values.name}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
                                 />
+                                {formik.touched.name && formik.errors.name && (
+                                    <div className="text-danger">{formik.errors.name}</div>
+                                )}
                             </div>
 
                             <div className="mb-3">
@@ -120,9 +147,13 @@ const AdminProductView = () => {
                                     className="form-control"
                                     id="description"
                                     name="description"
-                                    value={product.description}
-                                    onChange={handleChange}
+                                    value={formik.values.description}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
                                 ></textarea>
+                                {formik.touched.description && formik.errors.description && (
+                                    <div className="text-danger">{formik.errors.description}</div>
+                                )}
                             </div>
 
                             <div className="mb-3">
@@ -131,8 +162,9 @@ const AdminProductView = () => {
                                     className="form-select"
                                     id="category"
                                     name="category"
-                                    value={product.category}
-                                    onChange={handleChange}
+                                    value={formik.values.category}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
                                 >
                                     <option value="">Sélectionner une catégorie</option>
                                     <option value="Carte Mère">Carte Mère</option>
@@ -142,8 +174,10 @@ const AdminProductView = () => {
                                     <option value="Alimentation">Alimentation</option>
                                     <option value="Processeur">Processeur</option>
                                 </select>
+                                {formik.touched.category && formik.errors.category && (
+                                    <div className="text-danger">{formik.errors.category}</div>
+                                )}
                             </div>
-
 
                             <div className="mb-3">
                                 <label htmlFor="brand" className="form-label">Marque</label>
@@ -151,8 +185,9 @@ const AdminProductView = () => {
                                     className="form-select"
                                     id="brand"
                                     name="brand"
-                                    value={product.brand}
-                                    onChange={handleChange}
+                                    value={formik.values.brand}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
                                 >
                                     <option value="">Sélectionner une marque</option>
                                     <option value="Corsair">Corsair</option>
@@ -166,8 +201,10 @@ const AdminProductView = () => {
                                     <option value="Razer">Razer</option>
                                     <option value="Cooler Master">Cooler Master</option>
                                 </select>
+                                {formik.touched.brand && formik.errors.brand && (
+                                    <div className="text-danger">{formik.errors.brand}</div>
+                                )}
                             </div>
-
 
                             <div className="mb-3">
                                 <label htmlFor="price" className="form-label">Prix</label>
@@ -176,9 +213,13 @@ const AdminProductView = () => {
                                     className="form-control"
                                     id="price"
                                     name="price"
-                                    value={product.price}
-                                    onChange={handleChange}
+                                    value={formik.values.price}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
                                 />
+                                {formik.touched.price && formik.errors.price && (
+                                    <div className="text-danger">{formik.errors.price}</div>
+                                )}
                             </div>
 
                             <div className="mb-3">
@@ -188,9 +229,13 @@ const AdminProductView = () => {
                                     className="form-control"
                                     id="quantity"
                                     name="quantity"
-                                    value={product.quantity}
-                                    onChange={handleChange}
+                                    value={formik.values.quantity}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
                                 />
+                                {formik.touched.quantity && formik.errors.quantity && (
+                                    <div className="text-danger">{formik.errors.quantity}</div>
+                                )}
                             </div>
 
                             <button type="submit" className="btn text-light btn-warning">Ajouter</button>
