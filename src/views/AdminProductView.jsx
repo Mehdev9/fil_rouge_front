@@ -92,7 +92,7 @@ const AdminProductView = () => {
                         </a>
                         <ul className="dropdown-menu" aria-labelledby="productsDropdown">
                             <li>
-                                <Link to="/dashboard/products/add" className="dropdown-item">
+                                <Link to="/dashboard/products" className="dropdown-item">
                                     Ajouter un produit
                                 </Link>
                             </li>
@@ -271,7 +271,7 @@ const AdminProductView = () => {
                                 )}
                             </div>
 
-                            <button type="submit" className="btn text-light btn-warning">Ajouter</button>
+                            <button type="submit" className="btn text-light btn-success">Ajouter</button>
                         </form>
                     </div>
                 </section>
