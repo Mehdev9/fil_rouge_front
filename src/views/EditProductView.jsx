@@ -119,8 +119,8 @@ const EditProductView = () => {
                                             <td>{product.price} €</td>
                                             <td>
                                                 {/* Modifier un produit */}
-                                                <Link to={`/dashboard/products/edit/${product.id}`} className="btn btn-warning me-2">
-                                                    <i className="bi bi-pencil"></i> Modifier
+                                                <Link to={`/dashboard/products/edit/${product.id}`} className="btn btn-warning text-light me-2">
+                                                    <i className="bi bi-pencil text-light"></i> Modifier
                                                 </Link>
 
                                                 {/* Supprimer un produit */}
