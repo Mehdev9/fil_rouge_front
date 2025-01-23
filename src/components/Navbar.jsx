@@ -56,9 +56,14 @@ const Nav = () => {
                                 </li>
                             </>
                         ) : (
-                            <li>
-                                <Link to="/login" className="dropdown-item">Connexion</Link>
-                            </li>
+                            <>
+                                <li>
+                                    <Link to="/login" className="dropdown-item">Connexion</Link>
+                                </li>
+                                <li>
+                                    <Link to="/register" className="dropdown-item">Inscription</Link>
+                                </li>
+                            </>
                         )}
                     </ul>
                 </li>

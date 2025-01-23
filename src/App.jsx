@@ -19,6 +19,8 @@ import 'aos/dist/aos.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import {DashboardView} from "./views/DashboardView.jsx";
 import AdminProductView from "./views/AdminProductView.jsx";
+import EditProductView from "./views/EditProductView.jsx";
+
 
 
 const App = () => {
@@ -52,6 +54,8 @@ const App = () => {
                     <Route path="/about" element={<AboutView/>}/>
                     <Route path="/services" element={<ServiceView/>}/>
                     <Route path="/contact" element={<ContactView/>}/>
+                    <Route path="/shop" element={<ShopView/>}/>
+
 
                     <Route element={<UnprotectedRoute/>}>
                         <Route path="/register" element={<RegisterView/>}/>
@@ -63,6 +67,7 @@ const App = () => {
 
                     <Route element={<ProtectedRoute/>}>
                         <Route path="/dashboard/products" element={<AdminProductView/>}/>
+                        <Route path="/dashboard/products/edit" element={<EditProductView/>}/>
                         <Route path="/account" element={<AccountView/>}/>
                         <Route path="/dashboard" element={<DashboardView/>}/>
 

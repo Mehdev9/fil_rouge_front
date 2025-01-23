@@ -13,7 +13,7 @@ const AdminProductView = () => {
             brand: '',
             price: '',
             quantity: '',
-            image: null
+            imageUrl: null
         },
         validationSchema: Yup.object({
             name: Yup.string().min(4, "Le nom doit comporter au moins 4 caractères").max(30, "Le nom ne peut pas dépasser 30 caractères").required("Le nom est requis"),
@@ -32,15 +32,13 @@ const AdminProductView = () => {
             formData.append("price", values.price);
             formData.append("quantity", values.quantity);
 
-            // Ajouter l'image si elle existe
-            if (values.image) {
-                formData.append("image", values.image);
+            if (values.imageUrl) {
+                formData.append("imageUrl", values.imageUrl);
             }
 
-            // Envoi de la requête avec FormData
             ApiBackend.post("/dashboard/products", formData, {
                 headers: {
-                    "Content-Type": "multipart/form-data", // Indiquer qu'on envoie des fichiers
+                    "Content-Type": "multipart/form-data",
                 },
             })
                 .then(response => {
@@ -65,10 +63,23 @@ const AdminProductView = () => {
                             <i className="bi bi-house-door"></i> Dashboard
                         </Link>
                     </li>
-                    <li className="nav-item mb-3">
-                        <Link to="/dashboard/products" className="nav-link">
+                    <li className="nav-item dropdown mb-3">
+                        <a className="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
                             <i className="bi bi-shop"></i> Produits
-                        </Link>
+                        </a>
+                        <ul className="dropdown-menu" aria-labelledby="productsDropdown">
+                            <li>
+                                <Link to="/dashboard/products/add" className="dropdown-item">
+                                    Ajouter un produit
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/dashboard/products/edit" className="dropdown-item">
+                                    Modifier un produit
+                                </Link>
+                            </li>
+                        </ul>
                     </li>
                     <li className="nav-item mb-3">
                         <Link to="/orders" className="nav-link">
@@ -105,23 +116,23 @@ const AdminProductView = () => {
                 <section className="py-5 shadow-lg" data-aos="fade-up">
                     <div className="container bg-primary text-light rounded p-4">
                         <h2 className="text-warning pb-2">Formulaire d'ajout</h2>
-                        <hr />
+                        <hr/>
 
                         <form onSubmit={formik.handleSubmit}>
 
                             <div className="mb-3">
-                                <label htmlFor="image" className="form-label">Image du produit</label>
+                                <label htmlFor="imageUrl" className="form-label">Image du produit</label>
                                 <input
                                     type="file"
                                     className="form-control"
-                                    id="image"
-                                    name="image"
+                                    id="imageUrl"
+                                    name="imageUrl"
                                     onChange={(event) => {
-                                        formik.setFieldValue("image", event.target.files[0]);
+                                        formik.setFieldValue("imageUrl", event.target.files[0]); // Changement ici pour imageUrl
                                     }}
                                 />
-                                {formik.touched.image && formik.errors.image && (
-                                    <div className="text-danger">{formik.errors.image}</div>
+                                {formik.touched.imageUrl && formik.errors.imageUrl && (
+                                    <div className="text-danger">{formik.errors.imageUrl}</div>
                                 )}
                             </div>
 

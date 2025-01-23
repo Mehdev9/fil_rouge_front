@@ -29,40 +29,56 @@ export const DashboardView = () => {
     return (
         <div className="dashboard-page d-flex">
 
-            <div className="sidebar bg-primary text-light p-4 mt-5" style={{width: '250px'}}>
+            <div className="sidebar bg-dark text-light p-4 mt-5" style={{width: '250px'}}>
                 <hr className="my-4 border-3 border-warning"/>
                 <h3 className="text-warning text-center mb-4">CompoTower</h3>
                 <hr className="my-4 border-3 border-warning"/>
                 <ul className="nav flex-column">
                     <li className="nav-item mb-3">
-                        <Link to="/dashboard" className="nav-link text-light">
+                        <Link to="/dashboard" className="nav-link">
                             <i className="bi bi-house-door"></i> Dashboard
                         </Link>
                     </li>
-                    <li className="nav-item mb-3">
-                        <Link to="/dashboard/products" className="nav-link text-light">
+                    <li className="nav-item dropdown mb-3">
+                        <a className="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
                             <i className="bi bi-shop"></i> Produits
-                        </Link>
+                        </a>
+                        <ul className="dropdown-menu" aria-labelledby="productsDropdown">
+                            <li>
+                                <Link to="/dashboard/products" className="dropdown-item">
+                                    Ajouter un produit
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/dashboard/products/edit" className="dropdown-item">
+                                    Modifier un produit
+                                </Link>
+                            </li>
+                        </ul>
                     </li>
                     <li className="nav-item mb-3">
-                        <Link to="/orders" className="nav-link text-light">
+                        <Link to="/orders" className="nav-link">
                             <i className="bi bi-box"></i> Commandes
                         </Link>
                     </li>
                     <li className="nav-item mb-3">
-                        <Link to="/account" className="nav-link text-light">
+                        <Link to="/account" className="nav-link">
                             <i className="bi bi-person-circle"></i> Profil
                         </Link>
                     </li>
                     <li className="nav-item mb-3">
-                        <Link to="/offers" className="nav-link text-light">
+                        <Link to="/offers" className="nav-link">
                             <i className="bi bi-tag"></i> Offres
                         </Link>
                     </li>
                     <li className="nav-item mb-3">
                         <button
-                            className="nav-link text-light bg-transparent border-0 d-flex align-items-center"
-                            onClick={handleLogout}
+                            className="nav-link bg-transparent border-0 d-flex align-items-center"
+                            onClick={() => {
+                                localStorage.removeItem("token");
+                                window.location.href = "/";
+                            }}
                         >
                             <i className="bi bi-box-arrow-right me-2"></i> Déconnexion
                         </button>
@@ -77,7 +93,7 @@ export const DashboardView = () => {
                              display: 'flex',
                              flexDirection: 'column',
                              justifyContent: 'center'
-                }}>
+                         }}>
                     <div className="container">
                         <h1 className="mt-5">Bienvenue dans votre tableau de bord</h1>
                         <hr/>
@@ -87,7 +103,7 @@ export const DashboardView = () => {
                         </p>
                     </div>
                 </section>
-                
+
                 <section className="py-5 shadow-lg" data-aos="fade-up">
                     <div className="container bg-primary text-light rounded p-4">
                         <div className="row justify-content-center">
