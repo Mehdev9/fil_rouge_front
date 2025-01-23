@@ -7,16 +7,25 @@ const ShopView = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
+    const [priceFilter, setPriceFilter] = useState('');
+    const [categoryFilter, setCategoryFilter] = useState('');
+    const [brandFilter, setBrandFilter] = useState('');
 
-    // Utilisation du useEffect pour charger les produits au chargement initial et lors d'une recherche
     useEffect(() => {
-        // Si searchQuery est vide, on récupère tous les produits, sinon on filtre par la query
         const fetchProducts = async () => {
             try {
                 let url = 'http://localhost:8080/dashboard/products/shop';
-                if (searchQuery) {
-                    url += `?query=${searchQuery}`;
+
+                const filters = [];
+                if (searchQuery) filters.push(`query=${searchQuery}`);
+                if (priceFilter) filters.push(`price=${priceFilter}`);
+                if (categoryFilter) filters.push(`category=${categoryFilter}`);
+                if (brandFilter) filters.push(`brand=${brandFilter}`);
+
+                if (filters.length > 0) {
+                    url += `?${filters.join('&')}`;
                 }
+
                 const response = await axios.get(url);
                 setProducts(response.data);
                 setLoading(false);
@@ -27,11 +36,22 @@ const ShopView = () => {
             }
         };
         fetchProducts();
-    }, [searchQuery]);  // On relance le useEffect dès que searchQuery change
+    }, [searchQuery, priceFilter, categoryFilter, brandFilter]);
 
     const handleSearchChange = (e) => {
-        const query = e.target.value;
-        setSearchQuery(query);  // Cette mise à jour déclenche le useEffect ci-dessus
+        setSearchQuery(e.target.value);
+    };
+
+    const handlePriceChange = (e) => {
+        setPriceFilter(e.target.value);
+    };
+
+    const handleCategoryChange = (e) => {
+        setCategoryFilter(e.target.value);
+    };
+
+    const handleBrandChange = (e) => {
+        setBrandFilter(e.target.value);
     };
 
     if (loading) {
@@ -79,6 +99,56 @@ const ShopView = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* Filtres de recherche */}
+                <div className="row justify-content-center mb-4">
+                    <div className="col-md-3">
+                        <select
+                            className="form-select"
+                            value={priceFilter}
+                            onChange={handlePriceChange}
+                        >
+                            <option value="">Filtrer par prix</option>
+                            <option value="low-high">Prix: croissant</option>
+                            <option value="high-low">Prix: décroissant</option>
+                        </select>
+                    </div>
+                    <div className="col-md-3">
+                        <select
+                            className="form-select"
+                            value={categoryFilter}
+                            onChange={handleCategoryChange}
+                        >
+                            <option value="">Filtrer par catégorie</option>
+                            <option value="Carte Mère">Carte Mère</option>
+                            <option value="Carte Graphique">Carte Graphique</option>
+                            <option value="SSD">SSD</option>
+                            <option value="Boîtier">Boîtier</option>
+                            <option value="Alimentation">Alimentation</option>
+                            <option value="Processeur">Processeur</option>
+                        </select>
+                    </div>
+                    <div className="col-md-3">
+                        <select
+                            className="form-select"
+                            value={brandFilter}
+                            onChange={handleBrandChange}
+                        >
+                            <option value="">Filtrer par marque</option>
+                            <option value="Corsair">Corsair</option>
+                            <option value="ASUS">ASUS</option>
+                            <option value="MSI">MSI</option>
+                            <option value="Gigabyte">Gigabyte</option>
+                            <option value="Intel">Intel</option>
+                            <option value="AMD">AMD</option>
+                            <option value="EVGA">EVGA</option>
+                            <option value="NZXT">NZXT</option>
+                            <option value="Razer">Razer</option>
+                            <option value="Cooler Master">Cooler Master</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div className="row">
                     {products.length === 0 ? (
                         <div className="col-12 text-center">Aucun produit trouvé.</div>
