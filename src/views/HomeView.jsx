@@ -11,7 +11,7 @@ export const HomeView = () => {
                 <div className="container">
                     <h1 className="mt-5">Bienvenue sur CompoTower !</h1>
                     <hr/>
-                    <p className="lead">
+                    <p className="lead bg-violet">
                         Découvrez les meilleurs composants PC, conçus pour offrir performance, fiabilité et innovation à
                         un prix compétitif.
                         Que vous soyez un passionné de jeux vidéo, un créateur de contenu ou un professionnel, nous

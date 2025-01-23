@@ -72,8 +72,7 @@ const Nav = () => {
                 </ul>
             </div>
 
-            {/* Sous-navbar */}
-            <div className="sous-navbar-container">
+            <div className="sous-navbar-container bg-warning">
                 <ul className="sous-navbar">
                     <li className="nav-item">
                         <Link to="/shop?category=carte-mere" className="nav-link">Carte mère</Link>

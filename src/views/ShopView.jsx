@@ -76,7 +76,7 @@ const ShopView = () => {
                 <div className="container">
                     <h1 className="mt-5">Composants</h1>
                     <hr />
-                    <p className="lead">
+                    <p className="lead bg-violet">
                         C'est ici que vous trouverez les meilleurs composants pour votre configuration !
                     </p>
                 </div>
@@ -100,7 +100,6 @@ const ShopView = () => {
                     </div>
                 </div>
 
-                {/* Filtres de recherche */}
                 <div className="row justify-content-center mb-4">
                     <div className="col-md-3">
                         <select
@@ -154,8 +153,8 @@ const ShopView = () => {
                         <div className="col-12 text-center">Aucun produit trouvé.</div>
                     ) : (
                         products.map((product) => (
-                            <div className="col-md-4 mb-4" key={product.id}>
-                                <div className="card">
+                            <div className="col-md-4 mb-5" key={product.id}>
+                                <div className="card bg-primary text-white text-center">
                                     <img
                                         src={`http://localhost:8080${product.imageUrl}`}
                                         alt={product.name}
@@ -168,7 +167,7 @@ const ShopView = () => {
                                         <p className="card-text">
                                             <strong>Prix : </strong>{product.price} €
                                         </p>
-                                        <Link to={`/product/${product.id}`} className="btn btn-primary">
+                                        <Link to={`/product/${product.id}`} className="btn btn-warning">
                                             Voir le produit
                                         </Link>
                                     </div>

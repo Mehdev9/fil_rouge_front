@@ -6,9 +6,8 @@ import ApiBackend from "../api/ApiBackend.js";
 const EditProductView = () => {
     const [products, setProducts] = useState([]);
 
-    // Charger les produits au démarrage
     useEffect(() => {
-        axios.get('http://localhost:8080/dashboard/products/shop')  // URL mise à jour pour charger les produits à éditer
+        axios.get('http://localhost:8080/dashboard/products/shop')
             .then((response) => {
                 setProducts(response.data);
             })
@@ -24,7 +23,7 @@ const EditProductView = () => {
             ApiBackend.delete(`/dashboard/products/${id}`)
                 .then(response => {
                     alert("Produit supprimé avec succès.");
-                    setProducts(products.filter(product => product.id !== id)); // Mettre à jour la liste après suppression
+                    setProducts(products.filter(product => product.id !== id));
                 })
                 .catch(error => {
                     alert("Une erreur est survenue lors de la suppression du produit.");
@@ -118,12 +117,10 @@ const EditProductView = () => {
                                             <td>{product.description}</td>
                                             <td>{product.price} €</td>
                                             <td>
-                                                {/* Modifier un produit */}
                                                 <Link to={`/dashboard/products/edit/${product.id}`} className="btn btn-warning text-light me-2">
                                                     <i className="bi bi-pencil text-light"></i> Modifier
                                                 </Link>
 
-                                                {/* Supprimer un produit */}
                                                 <button className="btn btn-danger" onClick={() => handleDelete(product.id)}>
                                                     <i className="bi bi-trash"></i> Supprimer
                                                 </button>
