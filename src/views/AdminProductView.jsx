@@ -3,8 +3,10 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import ApiBackend from "../api/ApiBackend.js";
 import { Link } from "react-router-dom";
+import {Bounce, toast} from 'react-toastify';
 
 const AdminProductView = () => {
+
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -42,11 +44,31 @@ const AdminProductView = () => {
                 },
             })
                 .then(response => {
-                    alert("Produit ajouté avec succès.");
+                    toast.success("Produit ajouté avec succès !", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Bounce,
+                    });
                     formik.resetForm();
                 })
                 .catch(error => {
-                    alert("Une erreur est survenue lors de l'ajout du produit.");
+                    toast.error("Une erreur est survenue.", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Bounce,
+                    });
                 });
         }
     });
@@ -128,7 +150,7 @@ const AdminProductView = () => {
                                     id="imageUrl"
                                     name="imageUrl"
                                     onChange={(event) => {
-                                        formik.setFieldValue("imageUrl", event.target.files[0]); // Changement ici pour imageUrl
+                                        formik.setFieldValue("imageUrl", event.target.files[0]);
                                     }}
                                 />
                                 {formik.touched.imageUrl && formik.errors.imageUrl && (
