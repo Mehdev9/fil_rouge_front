@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import ApiBackend from "../api/ApiBackend.js";
+import {Bounce, toast} from "react-toastify";
 
 const EditProductView = () => {
     const [products, setProducts] = useState([]);
@@ -16,17 +17,36 @@ const EditProductView = () => {
             });
     }, []);
 
-    // Supprimer un produit
     const handleDelete = (id) => {
         const confirmDelete = window.confirm("Êtes-vous sûr de vouloir supprimer ce produit ?");
         if (confirmDelete) {
             ApiBackend.delete(`/dashboard/products/${id}`)
                 .then(response => {
-                    alert("Produit supprimé avec succès.");
+                    toast.success("Produit supprimé avec succès !", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Bounce,
+                    });
                     setProducts(products.filter(product => product.id !== id));
                 })
                 .catch(error => {
-                    alert("Une erreur est survenue lors de la suppression du produit.");
+                    toast.error("Une erreur est survenue lors de la suppression du produit.", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Bounce,
+                    });
                 });
         }
     };
