@@ -20,7 +20,9 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { DashboardView } from "./views/DashboardView.jsx";
 import AdminProductView from "./views/AdminProductView.jsx";
 import EditProductView from "./views/EditProductView.jsx";
-import { ToastContainer, toast } from 'react-toastify';  // Assurez-vous d'avoir importé ça
+import { ToastContainer, toast } from 'react-toastify';
+import DetailsView from "./views/DetailsView.jsx";
+import CartView from "./views/CartView.jsx";
 
 const App = () => {
     const [loading, setLoading] = React.useState(true);
@@ -28,9 +30,9 @@ const App = () => {
 
     useEffect(() => {
         AOS.init({
-            duration: 1000,  // durée de l'animation (en millisecondes)
-            easing: 'ease',  // type d'accélération
-            once: true,      // l'animation se déclenche uniquement une fois
+            duration: 1000,
+            easing: 'ease',
+            once: true,
         });
         const token = localStorage.getItem("token");
         if (token) {
@@ -55,6 +57,8 @@ const App = () => {
                     <Route path="/services" element={<ServiceView />} />
                     <Route path="/contact" element={<ContactView />} />
                     <Route path="/shop" element={<ShopView />} />
+                    <Route path="/products/:id" element={<DetailsView />} />
+
 
                     <Route element={<UnprotectedRoute />}>
                         <Route path="/register" element={<RegisterView />} />
@@ -66,12 +70,13 @@ const App = () => {
                         <Route path="/dashboard/products/edit" element={<EditProductView />} />
                         <Route path="/account" element={<AccountView />} />
                         <Route path="/dashboard" element={<DashboardView />} />
+                        <Route path="/cart" element={<CartView />} />
                     </Route>
                 </Routes>
 
                 <Question />
                 <Footer />
-                <ToastContainer /> {/* Le ToastContainer ici pour l'affichage des notifications */}
+                <ToastContainer />
             </div>
         </BrowserRouter>
     );

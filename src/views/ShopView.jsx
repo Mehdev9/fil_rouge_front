@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import {Bounce, toast} from "react-toastify";
 
 const ShopView = () => {
     const [products, setProducts] = useState([]);
@@ -53,6 +54,65 @@ const ShopView = () => {
     const handleBrandChange = (e) => {
         setBrandFilter(e.target.value);
     };
+
+    const handleAddToCart = async (productId, price, quantity = 1) => {
+        try {
+
+            const token = localStorage.getItem('token');
+
+            if (!token) {
+                toast.error("Vous devez être connecté pour ajouter un produit au panier.", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce,
+                });
+                return;
+            }
+
+            await axios.post('http://localhost:8080/cart/add', null, {
+                params: {
+                    productId: productId,
+                    quantity: quantity,
+                    price: price
+                },
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            toast.success("Produit ajouté avec succès au panier !", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
+        } catch (error) {
+            console.error('Erreur lors de l\'ajout au panier', error);
+            toast.error("Une erreur est survenue.", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
+        }
+    };
+
 
     if (loading) {
         return <div className="text-center my-5">Chargement des produits...</div>;
@@ -148,6 +208,8 @@ const ShopView = () => {
                     </div>
                 </div>
 
+                <hr/>
+
                 <div className="row">
                     {products.length === 0 ? (
                         <div className="col-12 text-center">Aucun produit trouvé.</div>
@@ -163,13 +225,22 @@ const ShopView = () => {
                                     />
                                     <div className="card-body">
                                         <h5 className="card-title">{product.name}</h5>
+                                        <hr/>
                                         <p className="card-text">{product.description}</p>
                                         <p className="card-text">
                                             <strong>Prix : </strong>{product.price} €
                                         </p>
-                                        <Link to={`/product/${product.id}`} className="btn btn-warning">
-                                            Voir le produit
-                                        </Link>
+                                        <div className="d-flex justify-content-between w-100">
+                                            <Link to={`/products/${product.id}`} className="btn btn-warning">
+                                                Voir le produit
+                                            </Link>
+                                            <button
+                                                className="btn btn-success"
+                                                onClick={() => handleAddToCart(product.id, product.price, 1)}
+                                            >
+                                                Ajouter au panier
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
