@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Bounce, toast } from "react-toastify";
+import { Link } from 'react-router-dom';
 import ApiBackend from "../api/ApiBackend.js";
 
 const CartView = () => {
@@ -26,61 +28,98 @@ const CartView = () => {
 
     const handleRemoveProduct = async (productId) => {
         try {
-            await ApiBackend.delete(`cart/remove?productId=${productId}`);
+            await ApiBackend.delete(`/cart/remove?productId=${productId}`);
             setCart((prevCart) => ({
                 ...prevCart,
                 items: prevCart.items.filter(item => item.productId !== productId)
             }));
+            toast.success("Produit supprimé du panier avec succès.", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
         } catch (error) {
             console.error("Erreur lors de la suppression du produit :", error);
             setError("Erreur lors de la suppression du produit.");
         }
     };
 
-    const handleQuantityChange = async (productId, newQuantity) => {
-        // Tu peux également ajouter une fonctionnalité pour changer la quantité, et mettre à jour le panier
-    };
-
     if (loading) {
-        return <div>Chargement du panier...</div>;
+        return <div className="text-center my-5">Chargement du panier...</div>;
     }
 
     if (error) {
-        return <div className="text-danger">{error}</div>;
+        return <div className="text-center my-5 text-danger">{error}</div>;
     }
 
     return (
-        <div className="container my-5">
-            <h2>Mon Panier</h2>
-            {cart && cart.items.length === 0 ? (
-                <p>Votre panier est vide.</p>
-            ) : (
-                <div>
-                    <div className="row">
-                        {cart.items.map((item) => (
-                            <div key={item.id} className="col-md-4 mb-3">
-                                <div className="card">
-                                    <img src={`http://localhost:8080/products/${item.productId}/image`} alt="Product" className="card-img-top" />
+        <div className="shop-page">
+            <section
+                className="hero-section text-center py-5"
+                style={{
+                    minHeight: '600px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                }}
+            >
+                <div className="container">
+                    <h1 className="mt-5">Mon Panier</h1>
+                    <hr />
+                    <p className="lead bg-violet">
+                        Voici les produits que vous avez ajoutés à votre panier.
+                    </p>
+                </div>
+            </section>
+
+            <div className="container">
+                <div className="row justify-content-center mt-5">
+                    {cart && cart.items.length === 0 ? (
+                        <div className="col-12 text-center">Votre panier est vide.</div>
+                    ) : (
+                        cart.items.map((item) => (
+                            <div key={item.id} className="col-md-4 mb-4">
+                                <div className="card bg-primary text-white text-center">
+                                    <img
+                                        src={`http://localhost:8080/products/${item.productId}/image`}
+                                        alt="Product"
+                                        className="card-img-top"
+                                        style={{ height: '250px', objectFit: 'cover' }}
+                                    />
                                     <div className="card-body">
-                                        <h5 className="card-title">Produit ID: {item.productId}</h5>
+                                        <h5 className="card-title">{item.productId}</h5>
+                                        <hr />
                                         <p className="card-text">Quantité: {item.quantity}</p>
                                         <p className="card-text">Prix: {item.price} €</p>
-                                        <button
-                                            className="btn btn-danger"
-                                            onClick={() => handleRemoveProduct(item.productId)}
-                                        >
-                                            Supprimer
-                                        </button>
+                                        <div className="d-flex justify-content-between">
+                                            <button
+                                                className="btn btn-danger"
+                                                onClick={() => handleRemoveProduct(item.productId)}
+                                            >
+                                                Supprimer
+                                            </button>
+                                            <Link to={`/products/${item.productId}`} className="btn btn-warning">
+                                                Voir le produit
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        ))}
-                    </div>
-                    <div className="mt-4">
-                        <button className="btn btn-primary">Passer à la caisse</button>
-                    </div>
+                        ))
+                    )}
                 </div>
-            )}
+                {cart && cart.items.length > 0 && (
+                    <div className="text-center mt-4">
+                        <button className="btn btn-success">Passer à la caisse</button>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

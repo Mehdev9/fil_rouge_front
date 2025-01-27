@@ -215,7 +215,7 @@ const ShopView = () => {
                         <div className="col-12 text-center">Aucun produit trouvé.</div>
                     ) : (
                         products.map((product) => (
-                            <div className="col-md-4 mb-5" key={product.id}>
+                            <div className="col-md-4 mb-5" data-aos="fade-up" key={product.id}>
                                 <div className="card bg-primary text-white text-center">
                                     <img
                                         src={`http://localhost:8080${product.imageUrl}`}

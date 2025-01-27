@@ -54,13 +54,16 @@ const Nav = () => {
                                         <Link to="/account" className="dropdown-item">Mon compte</Link>
                                     </li>
                                     <li>
+                                        <Link to="/cart" className="dropdown-item">Mon panier</Link>
+                                    </li>
+                                    <li>
                                         <button className="dropdown-item" onClick={handleLogout}>Déconnexion</button>
                                     </li>
                                 </>
                             ) : (
                                 <>
                                     <li>
-                                        <Link to="/login" className="dropdown-item">Connexion</Link>
+                                    <Link to="/login" className="dropdown-item">Connexion</Link>
                                     </li>
                                     <li>
                                         <Link to="/register" className="dropdown-item">Inscription</Link>
