@@ -78,19 +78,22 @@ const Nav = () => {
             <div className="sous-navbar-container bg-warning">
                 <ul className="sous-navbar">
                     <li className="nav-item">
-                        <Link to="/shop?category=carte-mere" className="nav-link">Carte mère</Link>
+                        <Link to="/shop?category=Carte Mère" className="nav-link">Carte mère</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/shop?category=processeurs" className="nav-link">Processeurs</Link>
+                        <Link to="/shop?category=Processeur" className="nav-link">Processeurs</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/shop?category=carte-graphique" className="nav-link">Carte graphique</Link>
+                        <Link to="/shop?category=Carte Graphique" className="nav-link">Carte graphique</Link>
                     </li>
                     <li className="nav-item">
                         <Link to="/shop?category=ssd" className="nav-link">SSD</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/shop?category=boitier" className="nav-link">Boîtier</Link>
+                        <Link to="/shop?category=Boîtier" className="nav-link">Boîtier</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/shop?category=Alimentation" className="nav-link">Boîtier</Link>
                     </li>
                 </ul>
             </div>

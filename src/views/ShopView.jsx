@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {Bounce, toast} from "react-toastify";
+import { useLocation } from 'react-router-dom';
 
 const ShopView = () => {
     const [products, setProducts] = useState([]);
@@ -11,6 +12,15 @@ const ShopView = () => {
     const [priceFilter, setPriceFilter] = useState('');
     const [categoryFilter, setCategoryFilter] = useState('');
     const [brandFilter, setBrandFilter] = useState('');
+    const location = useLocation();
+
+    useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const categoryFromURL = queryParams.get('category');
+        if (categoryFromURL) {
+            setCategoryFilter(categoryFromURL);
+        }
+    }, [location.search]);
 
     useEffect(() => {
         const fetchProducts = async () => {
