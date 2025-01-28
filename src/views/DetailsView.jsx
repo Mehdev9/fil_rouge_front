@@ -113,7 +113,7 @@ const DetailsView = () => {
                 <div className="row justify-content-center mb-4 mt-5">
                     <div className="col-md-6 mb-4">
                         <img
-                            src={`http://localhost:8080${product.imageUrl}`}
+                            src={`http://localhost:8080/${product.imageUrl}`}
                             alt={product.name}
                             className="img-fluid"
                             style={{ height: '400px', objectFit: 'cover' }}

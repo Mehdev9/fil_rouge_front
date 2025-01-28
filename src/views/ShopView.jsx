@@ -55,7 +55,7 @@ const ShopView = () => {
         setBrandFilter(e.target.value);
     };
 
-    const handleAddToCart = async (productId, price, quantity = 1) => {
+    const handleAddToCart = async (productId, name, description, price, quantity = 1) => {
         try {
 
             const token = localStorage.getItem('token');
@@ -79,7 +79,9 @@ const ShopView = () => {
                 params: {
                     productId: productId,
                     quantity: quantity,
-                    price: price
+                    price: price,
+                    name: name,
+                    description: description
                 },
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -218,7 +220,7 @@ const ShopView = () => {
                             <div className="col-md-4 mb-5" data-aos="fade-up" key={product.id}>
                                 <div className="card bg-primary text-white text-center">
                                     <img
-                                        src={`http://localhost:8080${product.imageUrl}`}
+                                        src={`http://localhost:8080/${product.imageUrl}`}
                                         alt={product.name}
                                         className="card-img-top"
                                         style={{ height: '250px', objectFit: 'cover' }}

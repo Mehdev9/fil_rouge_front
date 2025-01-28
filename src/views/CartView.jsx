@@ -50,6 +50,39 @@ const CartView = () => {
         }
     };
 
+    const handleQuantityChange = async (productId, newQuantity) => {
+        try {
+            if (newQuantity < 1) return;
+
+            await ApiBackend.put('/cart/update', {
+                productId,
+                quantity: newQuantity
+            });
+
+            setCart((prevCart) => ({
+                ...prevCart,
+                items: prevCart.items.map(item =>
+                    item.productId === productId ? { ...item, quantity: newQuantity } : item
+                )
+            }));
+
+            toast.success("Quantité mise à jour avec succès.", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
+        } catch (error) {
+            console.error("Erreur lors de la mise à jour de la quantité :", error);
+            setError("Erreur lors de la mise à jour de la quantité.");
+        }
+    };
+
     if (loading) {
         return <div className="text-center my-5">Chargement du panier...</div>;
     }
@@ -85,29 +118,47 @@ const CartView = () => {
                     ) : (
                         cart.items.map((item) => (
                             <div key={item.id} className="col-md-4 mb-4">
-                                <div className="card bg-primary text-white text-center">
+                                <div className="card bg-primary text-light text-center" data-aos="fade-up">
                                     <img
-                                        src={`http://localhost:8080/products/${item.productId}/image`}
+                                        src={`http://localhost:8080/${item.productId}`}
                                         alt="Product"
                                         className="card-img-top"
                                         style={{ height: '250px', objectFit: 'cover' }}
                                     />
                                     <div className="card-body">
-                                        <h5 className="card-title">{item.productId}</h5>
-                                        <hr />
-                                        <p className="card-text">Quantité: {item.quantity}</p>
+                                        <h5 className="card-title">{item.name}</h5>
+                                        <hr/>
+                                        <p className="card-text">description: {item.description}</p>
+
                                         <p className="card-text">Prix: {item.price} €</p>
-                                        <div className="d-flex justify-content-between">
+
+                                        <div className="d-flex justify-content-center align-items-center mb-3">
                                             <button
-                                                className="btn btn-danger"
-                                                onClick={() => handleRemoveProduct(item.productId)}
+                                                className="btn btn-outline-secondary"
+                                                onClick={() => handleQuantityChange(item.productId, item.quantity - 1)}
                                             >
-                                                Supprimer
+                                                -
                                             </button>
-                                            <Link to={`/products/${item.productId}`} className="btn btn-warning">
-                                                Voir le produit
-                                            </Link>
+                                            <span className="mx-3">{item.quantity}</span>
+                                            <button
+                                                className="btn btn-outline-secondary"
+                                                onClick={() => handleQuantityChange(item.productId, item.quantity + 1)}
+                                            >
+                                                +
+                                            </button>
                                         </div>
+                                    </div>
+
+                                    <div className="d-flex justify-content-between px-3 pb-3">
+                                        <button
+                                            className="btn btn-danger"
+                                            onClick={() => handleRemoveProduct(item.productId)}
+                                        >
+                                            Supprimer
+                                        </button>
+                                        <Link to={`/products/${item.productId}`} className="btn btn-warning">
+                                            Voir le produit
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
