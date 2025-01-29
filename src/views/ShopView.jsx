@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {Bounce, toast} from "react-toastify";
 import { useLocation } from 'react-router-dom';
+import ApiBackend from "../api/ApiBackend.js";
 
 const ShopView = () => {
     const [products, setProducts] = useState([]);
@@ -65,9 +66,8 @@ const ShopView = () => {
         setBrandFilter(e.target.value);
     };
 
-    const handleAddToCart = async (productId, name, description, price, quantity = 1) => {
+    const handleAddToCart = async (productId, price, quantity = 1) => {
         try {
-
             const token = localStorage.getItem('token');
 
             if (!token) {
@@ -85,30 +85,30 @@ const ShopView = () => {
                 return;
             }
 
-            await axios.post('http://localhost:8080/cart/add', null, {
-                params: {
-                    productId: productId,
-                    quantity: quantity,
-                    price: price,
-                    name: name,
-                    description: description
-                },
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
 
-            toast.success("Produit ajouté avec succès au panier !", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                transition: Bounce,
-            });
+            await axios.post('http://localhost:8080/cart/add', null, {
+                    params: {
+                        productId: productId,
+                        quantity: quantity,
+                        price: price,
+                    },
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                toast.success("Produit ajouté au panier avec succès !", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce,
+                });
+
         } catch (error) {
             console.error('Erreur lors de l\'ajout au panier', error);
             toast.error("Une erreur est survenue.", {
@@ -123,7 +123,8 @@ const ShopView = () => {
                 transition: Bounce,
             });
         }
-    };
+
+};
 
 
     if (loading) {

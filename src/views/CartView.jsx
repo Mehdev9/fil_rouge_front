@@ -54,9 +54,9 @@ const CartView = () => {
         try {
             if (newQuantity < 1) return;
 
-            await ApiBackend.put('/cart/update', {
+            await ApiBackend.post('/cart/add', {
                 productId,
-                quantity: newQuantity
+                quantity: newQuantity,
             });
 
             setCart((prevCart) => ({
@@ -81,7 +81,7 @@ const CartView = () => {
             console.error("Erreur lors de la mise à jour de la quantité :", error);
             setError("Erreur lors de la mise à jour de la quantité.");
         }
-    };
+};
 
     if (loading) {
         return <div className="text-center my-5">Chargement du panier...</div>;
