@@ -8,7 +8,6 @@ export const DashboardView = () => {
     useEffect(() => {
         ApiBackend.get("/dashboard")
             .then((response) => {
-                console.log(response);
             });
     }, []);
 

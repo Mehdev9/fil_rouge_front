@@ -23,7 +23,7 @@ import EditProductView from "./views/EditProductView.jsx";
 import { ToastContainer, toast } from 'react-toastify';
 import DetailsView from "./views/DetailsView.jsx";
 import CartView from "./views/CartView.jsx";
-// import FormEditProductView from "./views/FormEditProductView.jsx";
+import FormEditProductView from "./views/FormEditProductView.jsx";
 
 const App = () => {
     const [loading, setLoading] = React.useState(true);
@@ -69,7 +69,7 @@ const App = () => {
                     <Route element={<ProtectedRoute />}>
                         <Route path="/dashboard/products" element={<AdminProductView />} />
                         <Route path="/dashboard/products/edit" element={<EditProductView />} />
-                        {/*<Route path="/dashboard/products/edit/form" element={<FormEditProductView />} />*/}
+                        <Route path="/dashboard/products/edit/:productId" element={<FormEditProductView />} />
 
                         <Route path="/account" element={<AccountView />} />
                         <Route path="/dashboard" element={<DashboardView />} />

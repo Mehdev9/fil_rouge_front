@@ -77,7 +77,7 @@ const EditProductView = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/dashboard/products/edit" className="dropdown-item">
+                                <Link to="/dashboard/products/:id" className="dropdown-item">
                                     Modifier un produit
                                 </Link>
                             </li>
