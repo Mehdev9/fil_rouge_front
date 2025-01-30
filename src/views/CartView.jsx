@@ -26,62 +26,28 @@ const CartView = () => {
         fetchCart();
     }, [userId]);
 
-    const handleRemoveProduct = async (productId) => {
-        try {
-            await ApiBackend.delete(`/cart/remove?productId=${productId}`);
-            setCart((prevCart) => ({
-                ...prevCart,
-                items: prevCart.items.filter(item => item.productId !== productId)
-            }));
-            toast.success("Produit supprimé du panier avec succès.", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                transition: Bounce,
-            });
-        } catch (error) {
-            console.error("Erreur lors de la suppression du produit :", error);
-            setError("Erreur lors de la suppression du produit.");
-        }
-    };
-
     const handleQuantityChange = async (productId, newQuantity) => {
         try {
-            if (newQuantity < 1) return;
+            if (newQuantity < 1) {
+                await ApiBackend.delete(`/cart/remove?productId=${productId}`);
+                setCart(prevCart => ({
+                    ...prevCart,
+                    items: prevCart.items.filter(item => item.productId !== productId)
+                }));
+            } else {
+                await ApiBackend.put(`/cart/updateQuantity?productId=${productId}&quantity=${newQuantity}`);
 
-            await ApiBackend.post('/cart/add', {
-                productId,
-                quantity: newQuantity,
-            });
-
-            setCart((prevCart) => ({
-                ...prevCart,
-                items: prevCart.items.map(item =>
-                    item.productId === productId ? { ...item, quantity: newQuantity } : item
-                )
-            }));
-
-            toast.success("Quantité mise à jour avec succès.", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                transition: Bounce,
-            });
+                const response = await ApiBackend.get(`http://localhost:8080/cart/user`);
+                setCart(response.data);
+            }
+            toast.success("Quantité mise à jour avec succès.", { position: "top-right", autoClose: 5000, theme: "colored", transition: Bounce });
         } catch (error) {
             console.error("Erreur lors de la mise à jour de la quantité :", error);
             setError("Erreur lors de la mise à jour de la quantité.");
         }
-};
+    };
+
+
 
     if (loading) {
         return <div className="text-center my-5">Chargement du panier...</div>;
