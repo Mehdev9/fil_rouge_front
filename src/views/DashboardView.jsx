@@ -86,22 +86,23 @@ export const DashboardView = () => {
             </div>
 
             <div className="main-content flex-grow-1 p-4">
-                <section className="hero-section text-center py-5"
-                         style={{
-                             minHeight: '600px',
-                             display: 'flex',
-                             flexDirection: 'column',
-                             justifyContent: 'center'
-                         }}>
-                    <div className="container">
-                        <h1 className="mt-5">Bienvenue dans votre tableau de bord</h1>
-                        <hr/>
-                        <p className="lead">
-                            Gérer vos produits, commandes et profil avec facilité. Accédez aux dernières informations
-                            et gérez vos préférences en un clin d'œil.
-                        </p>
-                    </div>
-                </section>
+                <h1 className="text-warning text-center mt-5 pt-5 mb-5">Bienvenue sur le tableau de bord</h1>
+                {/*<section className="hero-section text-center py-5"*/}
+                {/*         style={{*/}
+                {/*             minHeight: '600px',*/}
+                {/*             display: 'flex',*/}
+                {/*             flexDirection: 'column',*/}
+                {/*             justifyContent: 'center'*/}
+                {/*         }}>*/}
+                {/*    <div className="container">*/}
+                {/*        <h1 className="mt-5">Bienvenue dans votre tableau de bord</h1>*/}
+                {/*        <hr/>*/}
+                {/*        <p className="lead">*/}
+                {/*            Gérer vos produits, commandes et profil avec facilité. Accédez aux dernières informations*/}
+                {/*            et gérez vos préférences en un clin d'œil.*/}
+                {/*        </p>*/}
+                {/*    </div>*/}
+                {/*</section>*/}
 
                 <section className="py-5 shadow-lg" data-aos="fade-up">
                     <div className="container bg-primary text-light rounded p-4">

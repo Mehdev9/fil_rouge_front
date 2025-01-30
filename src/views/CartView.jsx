@@ -82,8 +82,10 @@ const CartView = () => {
                     {cart && cart.items.length === 0 ? (
                         <div className="col-12 text-center">Votre panier est vide.</div>
                     ) : (
-                        cart.items.map((item) => (
+
+                        cart.items.sort((a, b)=> a.id - b.id).map((item) => (
                             <div key={item.id} className="col-md-4 mb-4">
+                                {console.log(item)}
                                 <div className="card bg-primary text-light text-center" data-aos="fade-up">
                                     <img
                                         src={`http://localhost:8080/${item.productId}`}
